@@ -11,6 +11,7 @@ public class Constants {
     public static final String TREE_TABLE = "Tree";
     public static final String WOOD_CHUNK_TABLE = "WoodChunk";
     public static final String RUTA_TABLE = "Ruta";
+    public static final String USER_TABLES = "information_schema.user_tables";
     public static final int RETRY_LIMIT = 4;
     public static final IonObjectMapper MAPPER = new IonValueMapper(IonSystemBuilder.standard().build());
 
