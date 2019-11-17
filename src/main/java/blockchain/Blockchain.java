@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import com.amazon.ion.IonStruct;
 import com.amazon.ion.IonValue;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.client.builder.AwsClientBuilder;
@@ -111,7 +113,7 @@ public class Blockchain {
         }
     }
     
-    public void addRuta(List<Ruta> rutas) {
+    public void addRutas(List<Ruta> rutas) {
         try(QldbSession qldbSession = createQldbSession()){
             qldbSession.execute(txn->{
                 insertDocuments(txn, Constants.RUTA_TABLE, rutas);
@@ -122,6 +124,95 @@ public class Blockchain {
     }
     
     
+    
+    /**
+     * Scan the table with the given {@code tableName} for all documents.
+     *
+     * @param txn
+     *              The {@link TransactionExecutor} for lambda execute.
+     * @param tableName
+     *              Name of the table to scan.
+     * @return a list of documents in {@link IonStruct} .
+     */
+    public List<IonStruct> scanTableForDocuments(final TransactionExecutor txn, final String tableName) {
+        System.out.println(String.format("Scanning '{}'...", tableName));
+        final String scanTable = String.format("SELECT * FROM %s", tableName);
+        List<IonStruct> documents = toIonStructs(txn.execute(scanTable));
+        System.out.println("Scan successful!");
+        printDocuments(documents);
+        return documents;
+    }
+    
+    
+
+    /**
+     * Pretty print all elements in the provided {@link Result}.
+     *
+     * @param result
+     *              {@link Result} from executing a query.
+     */
+    public static void printDocuments(final Result result) {
+        result.iterator().forEachRemaining(row -> System.out.println(row.toPrettyString()));
+    }
+
+    /**
+     * Pretty print all elements in the provided list of {@link IonStruct}.
+     *
+     * @param documents
+     *              List of documents to print.
+     */
+    public static void printDocuments(final List<IonStruct> documents) {
+        documents.forEach(row -> System.out.println(row.toPrettyString()));
+    }
+
+    /**
+     * Convert the result set into a list of {@link IonStruct}.
+     *
+     * @param result
+     *              {@link Result} from executing a query.
+     * @return a list of documents in IonStruct.
+     */
+    public static List<IonStruct> toIonStructs(final Result result) {
+        final List<IonStruct> documentList = new ArrayList<>();
+        result.iterator().forEachRemaining(row -> documentList.add((IonStruct) row));
+        return documentList;
+    }
+
+    /*public void main(final String... args) {
+        try (QldbSession qldbSession = createQldbSession()) {
+            qldbSession.execute(txn -> {
+                List<String> tableNames = scanTableForDocuments(txn, Constants.USER_TABLES)
+                    .stream()
+                    .map((s) -> s.get("name").toString())
+                    .collect(Collectors.toList());
+                for (String tableName : tableNames) {
+                    scanTableForDocuments(txn, tableName);
+                }
+            }, (retryAttempt) -> System.out.println("Retrying due to OCC conflict..."));
+        } catch (Exception e) {
+            System.out.println("Unable to scan tables.");
+            e.printStackTrace();
+        }
+    }*/
+
+    public List<IonStruct> executeQuery(final String query) {
+        try(QldbSession qldbSession = createQldbSession()){
+            return qldbSession.execute(txn->{
+                final String scanTable = query;
+                List<IonStruct> documents = toIonStructs(txn.execute(scanTable));
+                return documents;
+            });
+        }catch(Exception e) {
+            System.out.println("Unable to scan tables.");
+            e.printStackTrace();
+            throw e;
+        }
+        
+    }
+    
+    public void transferVolumen() {
+        
+    }
     
 
 }
