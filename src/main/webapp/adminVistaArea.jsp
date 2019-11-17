@@ -254,8 +254,38 @@
                                         ,
                 </c:if>
             </c:forEach>
-                                        ]).addTo(mymap);
+                                        ], {color: 'blue'}).addTo(mymap);
 
+                                        var polygon2 = L.polygon([
+            <c:forEach var="counter" begin="0" end="${lstUbicaciones2.size()-1}">
+                                        [
+                <c:out value="${lstUbicaciones2.get(counter).getLatitud()}"/>
+                                        ,
+                <c:out value="${lstUbicaciones2.get(counter).getLongitud()}"/>
+                                        ]
+                <c:if test="${counter!=lstUbicaciones2.size()-1}">
+                                        ,
+                </c:if>
+            </c:forEach>
+                                        ], {color: 'red'}).addTo(mymap);
+
+
+                                        var polygon2 = L.polygon([
+            <c:forEach var="counter" begin="0" end="${lstUbicaciones1.size()-1}">
+                                        [
+                <c:out value="${lstUbicaciones1.get(counter).getLatitud()}"/>
+                                        ,
+                <c:out value="${lstUbicaciones1.get(counter).getLongitud()}"/>
+                                        ]
+                <c:if test="${counter!=lstUbicaciones1.size()-1}">
+                                        ,
+                </c:if>
+            </c:forEach>
+                                        ], {color: 'yellow'}).addTo(mymap);
+
+            <c:forEach var="ubi" items="${puntos}">
+                                        L.marker([<c:out value="${ubi.getLatitud()}"/>, <c:out value="${ubi.getLongitud()}"/>]).addTo(mymap);
+            </c:forEach>
                                         console.log("e");
 
                                     }
