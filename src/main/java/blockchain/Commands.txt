@@ -1,0 +1,42 @@
+insert into Tree
+<<{
+	'id': 'TRE001',
+    'qr': '695F5FD2CA6F108325DE5DFC97D59FB86FB5C60F4F0D6CB0E872DA2E12572CD8',
+    'latitud': '-72.32013',
+    'longitud': '8.12302'
+},
+{
+	'id': 'TRE002',
+    'qr': 'B00EDF03EC6E3FD8F29793206CE814212DFBCB5F67ECB83B6C8707E3F96A39B3',
+    'latitud': '-72.3289',
+    'longitud': '8.12301'
+},
+{
+	'id': 'TRE003',
+    'qr': 'F6A774E4138DD281AD643639A6F6A35CD65A0ED87A1BD423BC5F9DA007457D33',
+    'latitud': '-73.93238',
+    'longitud': '7.992831'
+}>>
+
+insert into WoodChunk
+<<{
+	'id': 'CHU001',
+    'qr': 'D3B61C9D427FD52B9E2F1304EFFC12B64EAF87100E9EC255D266EAB0CCB7505D',
+    'latitud': '-72.32013',
+    'longitud': '8.12302',
+    'volumen': '3'
+},
+{
+	'id': 'CHU002',
+    'qr': '2CCBD3D8D06867A1BDD89DE0143C0E760C90BC3A934E95EE637936934E69547C',
+    'latitud': '-72.3289',
+    'longitud': '8.12301',
+    'volumen': '2'
+},
+{
+	'id': 'CHU003',
+    'qr': '2A5484C303C7E09178CC12015716D93A93230AD55ECA40D3F48A10EFB09A775D',
+    'latitud': '-73.93238',
+    'longitud': '7.992831',
+    'volumen': '2.5'
+}>>
