@@ -12,6 +12,10 @@
         <servlet-name>ConsultaAreas</servlet-name>
         <servlet-class>Controladores.ConsultaAreas</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoginController</servlet-name>
+        <servlet-class>Controladores.LoginController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>setUbicacion</servlet-name>
         <url-pattern>/setUbicacion</url-pattern>
@@ -24,9 +28,13 @@
         <servlet-name>ConsultaRuta</servlet-name>
         <url-pattern>/ConsultaRuta</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginController</servlet-name>
+        <url-pattern>/LoginController</url-pattern>
+    </servlet-mapping>
     <welcome-file-list>
         <welcome-file>
-            ConsultaRuta
+            LoginController
         </welcome-file>
     </welcome-file-list>
     <session-config>

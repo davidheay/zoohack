@@ -5,7 +5,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>FACTURACIONUDEC</title>
+        <title>AMAZON SUSTAINABLE WOODS</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="robots" content="all,follow">
@@ -31,9 +31,9 @@
                             <div class="info d-flex align-items-center" style="background-color: #006600 !important; ">
                                 <div class="content">
                                     <div class="logo">
-                                        <h1>FACTURACIONUDEC</h1>
+                                        <h1>AMAZON SUSTAINABLE WOODS</h1>
                                     </div>
-                                    <!--<p>SEBASTIAN ARBOLEDA</p>-->
+
                                 </div>
                             </div>
                         </div>
