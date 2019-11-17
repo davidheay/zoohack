@@ -113,7 +113,7 @@ public class Blockchain {
         }
     }
     
-    public void addRuta(List<Ruta> rutas) {
+    public void addRutas(List<Ruta> rutas) {
         try(QldbSession qldbSession = createQldbSession()){
             qldbSession.execute(txn->{
                 insertDocuments(txn, Constants.RUTA_TABLE, rutas);
@@ -197,7 +197,7 @@ public class Blockchain {
 
     public List<IonStruct> executeQuery(final String query) {
         try(QldbSession qldbSession = createQldbSession()){
-            qldbSession.execute(txn->{
+            return qldbSession.execute(txn->{
                 final String scanTable = query;
                 List<IonStruct> documents = toIonStructs(txn.execute(scanTable));
                 return documents;
@@ -205,9 +205,8 @@ public class Blockchain {
         }catch(Exception e) {
             System.out.println("Unable to scan tables.");
             e.printStackTrace();
-            
+            throw e;
         }
-        return null;
         
     }
     
