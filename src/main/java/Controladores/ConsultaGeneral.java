@@ -5,10 +5,7 @@
  */
 package Controladores;
 
-import Clases.Ubicacion;
-import Utilidades.Persistencia;
 import java.io.IOException;
-import javax.persistence.Persistence;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author deha1
  */
-public class LoginController extends HttpServlet {
+public class ConsultaGeneral extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -45,7 +42,7 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("login.jsp").forward(request, response);
+        request.getServletContext().getRequestDispatcher("/adminConsulta.jsp").forward(request, response);
     }
 
     /**
@@ -59,33 +56,7 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String usuNom = request.getParameter("usu");
-        String pass = request.getParameter("pas");
-        System.out.println(usuNom);
-        System.out.println(pass);
-        request.setAttribute("usu", usuNom);
-
-        if (request.getParameter("usu") != null) {
-
-            if (usuNom.equals("admin") && pass.equals("admin")) {
-                System.out.println("aaaa");
-                Persistencia persistencia = Persistencia.getInstance();
-                persistencia.getUbicaciones().add(new Ubicacion("4.854227", "-74.416125"));
-                persistencia.getUbicaciones().add(new Ubicacion("4.871289", "-74.433943"));
-                persistencia.getUbicaciones().add(new Ubicacion("4.881068", "-74.437174"));
-                persistencia.getUbicaciones().add(new Ubicacion("4.885876", "-74.441780"));
-                persistencia.getUbicaciones().add(new Ubicacion("4.898224", "-74.446883"));
-                persistencia.getUbicaciones().add(new Ubicacion("4.924138", "-74.454607"));
-                request.getRequestDispatcher("/ConsultaRuta").forward(request, response);
-
-            } else {
-                request.getRequestDispatcher("login.jsp").forward(request, response);
-            }
-
-        } else {
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-
-        }
+        request.getServletContext().getRequestDispatcher("/adminConsulta.jsp").forward(request, response);
     }
 
     /**

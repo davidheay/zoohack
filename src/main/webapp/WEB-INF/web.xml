@@ -16,6 +16,10 @@
         <servlet-name>LoginController</servlet-name>
         <servlet-class>Controladores.LoginController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ConsultaGeneral</servlet-name>
+        <servlet-class>Controladores.ConsultaGeneral</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>setUbicacion</servlet-name>
         <url-pattern>/setUbicacion</url-pattern>
@@ -37,6 +41,10 @@
             LoginController
         </welcome-file>
     </welcome-file-list>
+    <servlet-mapping>
+        <servlet-name>ConsultaGeneral</servlet-name>
+        <url-pattern>/ConsultaGeneral</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

@@ -28,13 +28,15 @@ public class ConsultaAreas extends HttpServlet {
             throws ServletException, IOException {
         Persistencia persistencia = Persistencia.getInstance();
         request.setAttribute("lstUbicaciones", persistencia.getUbicaciones());
-        request.getServletContext().getRequestDispatcher("/areas.jsp").forward(request, response);
+        request.getServletContext().getRequestDispatcher("/adminVistaArea.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        Persistencia persistencia = Persistencia.getInstance();
+        request.setAttribute("lstUbicaciones", persistencia.getUbicaciones());
+        request.getServletContext().getRequestDispatcher("/adminVistaArea.jsp").forward(request, response);
     }
 
     @Override
